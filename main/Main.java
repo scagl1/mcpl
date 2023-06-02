@@ -1,11 +1,15 @@
 package main;
 import lexer.AnLex;
+import token.Token;
 
 public class Main {
     public static void main(String[] args) {
         AnLex lexico = new AnLex();
-        char[] cadeia = "ola, teste 5;".toCharArray();
+        char[] cadeia = "teste".toCharArray();
 
-        System.out.println(lexico.lex_evaluate(cadeia));
+        for (Token token : lexico.lex_Evaluate(cadeia)) {
+            System.out.print(token.getType() + "   ");
+        }
+
     }
 }
