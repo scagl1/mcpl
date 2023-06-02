@@ -4,24 +4,27 @@
 
 package token;
 
-public enum Token {
+public class Token {
 
-    // Tipos de Tokens da linguagem
-        NUM, // [0-9]
-        ARITHM_OPERATOR, // +, -, *, /, <<
-        LOGIC_OPERATOR, // ==, !=, and, or, not, >, <, >=, <=
-        CONDITIONAL, // compare, redtorch, sculk
-        LOOP, // repeater, hopper, observer-this
-        CHAR, // [A-Za-z,`@#$%^&*]
-        PARENTHESIS_BEGIN,
-        PARENTHESIS_END,
-        SCOPE_BEGIN, // {
-        SCOPE_END, // }
-        DATATYPE, // int, boolean, char, float, unsigned
-        VAR, // Ex.: craft: int nome
-        WHITESPACE,
-        ERROR,
-        END_INSTRUCTION, // ;
-        CHAT, // chat("teste");
-        EOF
+    private char lexeme_Char;
+    private String lexeme_String;
+    private TokenType type;
+
+    public Token(char lexeme_Char, TokenType type) {
+        this.lexeme_Char = lexeme_Char;
+        this.type = type;
+    }
+    public Token (String lexeme_String, TokenType type) {
+        this.lexeme_String = lexeme_String;
+        this.type = type;
+    }
+    public Token (TokenType type) {
+        this.type = type;
+    }
+
+    //Getters
+    public char getLexeme() { return this.lexeme_Char; }
+    public String getLexeme_String() { return this.lexeme_String; }
+    public TokenType getType() { return this.type; }
+
 }
