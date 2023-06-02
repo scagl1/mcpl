@@ -43,4 +43,54 @@ public class AnLex {
 
         return lex_Evaluate_Strings(token_List);
     }
+
+    //
+    public ArrayList<Token> lex_Evaluate_Strings(ArrayList<Token> token_List) {
+        if (token_List.get(0) != null) {
+            Token iterador = token_List.get(0); // Recebe o primeiro token da lista
+
+            while (iterador.getType() != TokenType.EOF) {
+                int indice_Atual = token_List.indexOf(iterador); // Recebe e atualiza o indice da lista de Tokens
+                int proximo = -1;
+                if (iterador.getType() != TokenType.EOF) {
+                    proximo = indice_Atual + 1; // Look-ahead de 1 passo
+                }
+
+                if ( // <<
+                        ((iterador.getLexeme() == '<') && (iterador.getType() == TokenType.LOGIC_OPERATOR))
+                        && ((token_List.get(proximo) != null) && (token_List.get(proximo).getLexeme() == '<'))
+                ) {
+                    token_List.remove(proximo);
+                    token_List.set(indice_Atual, new Token("<<", TokenType.ARITHM_OPERATOR));
+                } else if ( // ==
+                        ((iterador.getLexeme() == '=') && (iterador.getType() == TokenType.CHAR))
+                                && ((token_List.get(proximo) != null) && (token_List.get(proximo).getLexeme() == '='))
+                        ) {
+                    token_List.remove(proximo);
+                    token_List.set(indice_Atual, new Token("==", TokenType.ARITHM_OPERATOR));
+                } else if ( // !=
+                        ((iterador.getLexeme() == '!') && (iterador.getType() == TokenType.CHAR))
+                                && ((token_List.get(proximo) != null) && (token_List.get(proximo).getLexeme() == '='))
+                        ) {
+                    token_List.remove(proximo);
+                    token_List.set(indice_Atual, new Token("!=", TokenType.LOGIC_OPERATOR));
+                } else if ( // >=
+                        ((iterador.getLexeme() == '>') && (iterador.getType() == TokenType.LOGIC_OPERATOR))
+                                && ((token_List.get(proximo) != null) && (token_List.get(proximo).getLexeme() == '='))
+                ) {
+                    token_List.remove(proximo);
+                    token_List.set(indice_Atual, new Token(">=", TokenType.LOGIC_OPERATOR));
+                } else if ( // <=
+                        ((iterador.getLexeme() == '<') && (iterador.getType() == TokenType.LOGIC_OPERATOR))
+                                && ((token_List.get(proximo) != null) && (token_List.get(proximo).getLexeme() == '='))
+                ) {
+                    token_List.remove(proximo);
+                    token_List.set(indice_Atual, new Token("<=", TokenType.LOGIC_OPERATOR));
+                }
+                iterador = token_List.get(indice_Atual + 1);
+            }
+        }
+
+        return token_List;
+    }
 }
