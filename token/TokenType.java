@@ -1,4 +1,9 @@
-package token;
+/*
+ * Lista de Tokens da linguagem MCPL
+ * 
+ */
+
+package token; 
 
 public enum TokenType {
     // Tipos de Tokens da linguagem
@@ -12,7 +17,7 @@ public enum TokenType {
     PARENTHESIS_END,
     SCOPE_BEGIN, // {
     SCOPE_END, // }
-    DATATYPE, // int, boolean, char, float, unsigned
+    DATATYPE, // int, boolean, char, float
     VAR, // Ex.: craft: int nome
     WHITESPACE,
     ERROR,
