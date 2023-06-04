@@ -1,21 +1,16 @@
 /*
- * Lista de Tokens da linguagem MCPL
+ * Abstração de um Token da linguagem MCPL
+ * 
  */
-
 package token;
 
-public class Token {
+ public class Token {
 
-    private char lexeme_Char;
-    private String lexeme_String;
+    private String lexeme;
     private TokenType type;
 
-    public Token(char lexeme_Char, TokenType type) {
-        this.lexeme_Char = lexeme_Char;
-        this.type = type;
-    }
-    public Token (String lexeme_String, TokenType type) {
-        this.lexeme_String = lexeme_String;
+    public Token (String lexeme, TokenType type) {
+        this.lexeme = lexeme;
         this.type = type;
     }
     public Token (TokenType type) {
@@ -23,8 +18,12 @@ public class Token {
     }
 
     //Getters
-    public char getLexeme() { return this.lexeme_Char; }
-    public String getLexeme_String() { return this.lexeme_String; }
+    public String getLexeme() { return this.lexeme; }
     public TokenType getType() { return this.type; }
 
+    public String toString() {
+        return "[" + getLexeme() + ", " + getType() + "]";
+    }
+
 }
+
