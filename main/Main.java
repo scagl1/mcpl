@@ -1,15 +1,24 @@
+/*
+ * Main do código-fonte
+ * 
+ */
+
 package main;
-import lexer.AnLex;
-import token.Token;
+
+import lexer.*;
+import token.*;
+import java.util.ArrayList;
 
 public class Main {
+
     public static void main(String[] args) {
-        AnLex lexico = new AnLex();
-        char[] cadeia = "teste".toCharArray();
+        String input = "int sculk < boolean > + - / *  << < repeater not and char float"; // Input teste
+        ArrayList<Token> tokens = new AnLex().lex_Evaluate(input);
 
-        for (Token token : lexico.lex_Evaluate(cadeia)) {
-            System.out.print(token.getType() + "   ");
+        System.out.println("{");
+        for (Token token : tokens) {
+            System.out.println(token.toString() + " ");
         }
-
+        System.out.print("}");
     }
 }
